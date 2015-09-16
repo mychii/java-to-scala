@@ -64,6 +64,7 @@ public class Main extends javax.swing.JFrame {
         logTextArea.setColumns(20);
         logTextArea.setLineWrap(true);
         logTextArea.setRows(5);
+        logTextArea.setText("1. 转换文件，在输入路径里填写java文件路径，点击开始转换，就会在同一目录下生成scala文件。\n2. 转换目录，在输入路径里填写要转换的目录，在转出路径填写输出路径，如果不填则生成的文件与源文件在同一目录。\n3. 转换maven项目，在输入路径里填写项目路径，然后点击开始转换，程序将自动在main下建立scala目录，并将相应的代码写在这个目录里。");
         logTextArea.setWrapStyleWord(true);
         jScrollPane1.setViewportView(logTextArea);
 
