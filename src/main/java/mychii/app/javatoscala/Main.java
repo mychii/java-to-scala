@@ -47,7 +47,11 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        filePathIpt.setText("E:\\workspace\\tssp\\tssp_scala\\tssp-manager-scala\\src\\main\\java\\org\\beangle\\bsp\\core\\action");
+        filePathIpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filePathIptActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("开始转换");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -66,8 +70,6 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setText("输入路径：");
 
         jLabel2.setText("输出路径：");
-
-        targetPathIpt.setText("E:\\workspace\\tssp\\tssp_scala\\tssp-manager-scala\\src\\main\\scala\\org\\beangle\\bsp\\core\\action");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -139,6 +141,10 @@ public class Main extends javax.swing.JFrame {
             }
         }).start();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void filePathIptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filePathIptActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_filePathIptActionPerformed
 
     /**
      * @param args the command line arguments
