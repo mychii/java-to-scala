@@ -123,6 +123,7 @@ public class Main extends javax.swing.JFrame {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                logTextArea.setText("");
                 logTextArea.append("开始转换...");
                 convertDir(new IFile(path));
                 logTextArea.append("\n");
