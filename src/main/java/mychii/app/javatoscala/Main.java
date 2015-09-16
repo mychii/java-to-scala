@@ -169,7 +169,7 @@ public class Main extends javax.swing.JFrame {
                         scala = new IFile(main.getAbsolutePath() + "/scala");
                         scala.mkdir();
                     }
-                    Converter.instance210().convert(main.find("java"), scala);
+                    Converter.instance211().convert(main.find("java"), scala);
                     if (logTextArea.getText().length() > 0) {
                         logTextArea.append("\n");
                     }

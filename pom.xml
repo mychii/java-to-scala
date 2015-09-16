@@ -9,21 +9,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.5</maven.compiler.source>
         <maven.compiler.target>1.5</maven.compiler.target>
-        <scala.version>2.10.1</scala.version>
-        <!--<scala.version>2.11.7</scala.version>-->
+        <scala.version>2.11.7</scala.version>
     </properties>
     
     <dependencies>
         <dependency>
             <groupId>com.mysema.scalagen</groupId>
-            <artifactId>scalagen_2.10.1</artifactId>
+            <artifactId>scalagen_2.11</artifactId>
             <version>0.3.2</version>
         </dependency>
-        <!--        <dependency>
-            <groupId>com.github.scalagen</groupId>
-            <artifactId>scalagen_2.11</artifactId>
-            <version>0.4.0</version>
-        </dependency>-->
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
