@@ -38,19 +38,16 @@ public class Main extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         filePathIpt = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         logTextArea = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        targetPathIpt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("选择目录");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        filePathIpt.setText("E:\\workspace\\tssp\\tssp_scala\\tssp-manager-scala\\src\\main\\java\\org\\beangle\\bsp\\core\\action");
 
         jButton2.setText("开始转换");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -66,27 +63,43 @@ public class Main extends javax.swing.JFrame {
         logTextArea.setWrapStyleWord(true);
         jScrollPane1.setViewportView(logTextArea);
 
+        jLabel1.setText("输入路径：");
+
+        jLabel2.setText("输出路径：");
+
+        targetPathIpt.setText("E:\\workspace\\tssp\\tssp_scala\\tssp-manager-scala\\src\\main\\scala\\org\\beangle\\bsp\\core\\action");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(filePathIpt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(targetPathIpt, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(filePathIpt, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(filePathIpt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(targetPathIpt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,15 +122,6 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int returnVal = chooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            filePathIpt.setText(chooser.getSelectedFile().getAbsolutePath());
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         final String path = filePathIpt.getText();
         new Thread(new Runnable() {
@@ -125,10 +129,13 @@ public class Main extends javax.swing.JFrame {
             public void run() {
                 logTextArea.setText("");
                 logTextArea.append("开始转换...");
-                convertDir(new IFile(path));
+                if (path.endsWith(".java")) {
+                    convertFile(new File(path));
+                } else {
+                    convertDir(new IFile(path));
+                }
                 logTextArea.append("\n");
                 logTextArea.append("转换结束.");
-                logTextArea.setCaretPosition(logTextArea.getText().length());
             }
         }).start();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -152,11 +159,13 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField filePathIpt;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea logTextArea;
+    private javax.swing.JTextField targetPathIpt;
     // End of variables declaration//GEN-END:variables
 
     private void convertDir(IFile dir) {
@@ -171,19 +180,33 @@ public class Main extends javax.swing.JFrame {
                         scala.mkdir();
                     }
                     Converter.instance211().convert(main.find("java"), scala);
-                    if (logTextArea.getText().length() > 0) {
-                        logTextArea.append("\n");
-                    }
+                    logTextArea.append("\n");
                     logTextArea.append(dir.getAbsolutePath());
                     logTextArea.setCaretPosition(logTextArea.getText().length());
                 }
-            } else {
-                for (File file : dir.listFiles()) {
-                    if (file.isDirectory()) {
-                        convertDir(new IFile(file));
-                    }
+            }
+        } else {
+            for (File file : dir.listFiles()) {
+                String path = file.getAbsolutePath();
+                if (file.isDirectory()) {
+                    convertDir(new IFile(file));
+                } else if (path.endsWith(".java")) {
+                    convertFile(file);
                 }
             }
         }
     }
+
+    private void convertFile(File file) {
+        String path = file.getAbsolutePath();
+        String target = path;
+        if (targetPathIpt.getText() != null && !"".equals(targetPathIpt.getText())) {
+            target = target.replace(filePathIpt.getText(), targetPathIpt.getText());
+        }
+        logTextArea.append("\n");
+        logTextArea.append(path);
+        logTextArea.setCaretPosition(logTextArea.getText().length());
+        Converter.instance211().convertFile(new File(path), new File(target.replace(".java", ".scala")));
+    }
+
 }
